@@ -1,0 +1,364 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 140 7% 97%;
+    --foreground: 223 47% 11%;
+
+    --muted: 230 32% 94%;
+    --muted-foreground: 223 14% 42%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 223 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 223 47% 11%;
+
+    --border: 262 21% 86%;
+    --input: 262 21% 86%;
+
+    --primary: 266 95% 57%;
+    --primary-foreground: 0 0% 99%;
+
+    --secondary: 265 35% 18%;
+    --secondary-foreground: 0 0% 98%;
+
+    --accent: 258 88% 96%;
+    --accent-foreground: 267 35% 18%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 98%;
+
+    --ring: 266 95% 57%;
+
+    --radius: 1rem;
+  }
+
+  .dark {
+    --background: 267 36% 7%;
+    --foreground: 0 0% 98%;
+
+    --muted: 266 30% 14%;
+    --muted-foreground: 263 15% 70%;
+
+    --popover: 262 42% 11%;
+    --popover-foreground: 0 0% 98%;
+
+    --card: 266 30% 12%;
+    --card-foreground: 0 0% 98%;
+
+    --border: 265 30% 22%;
+    --input: 265 30% 22%;
+
+    --primary: 266 95% 57%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 265 29% 10%;
+    --secondary-foreground: 0 0% 98%;
+
+    --accent: 261 55% 20%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 63% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --ring: 266 95% 57%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Manrope', system-ui, -apple-system, sans-serif;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    scroll-behavior: smooth;
+  }
+  html:not(.dark) body {
+    background-image:
+      radial-gradient(circle at 18% 20%, rgba(139, 92, 246, 0.18), transparent 35%),
+      radial-gradient(circle at 80% 0%, rgba(37, 99, 235, 0.16), transparent 32%),
+      linear-gradient(180deg, rgba(246, 248, 246, 0.9), rgba(237, 239, 246, 0.9));
+  }
+  .dark body {
+    background-image:
+      radial-gradient(circle at 18% 20%, rgba(139, 92, 246, 0.22), transparent 40%),
+      radial-gradient(circle at 80% 0%, rgba(37, 99, 235, 0.18), transparent 35%),
+      linear-gradient(180deg, rgba(15, 12, 22, 0.95), rgba(12, 10, 18, 0.94));
+  }
+}
+/* Bright purple glows */
+.bg-glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.bg-glow::before,
+.bg-glow::after {
+  content: '';
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(140px);
+  opacity: 0.6;
+}
+.bg-glow::before {
+  width: 520px;
+  height: 520px;
+  top: -80px;
+  left: -120px;
+  background: rgba(131, 40, 249, 0.4);
+}
+.bg-glow::after {
+  width: 460px;
+  height: 460px;
+  bottom: -60px;
+  right: -80px;
+  background: rgba(139, 92, 246, 0.35);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f6f8f6;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #0f0c16;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2e1065;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #8B5CF6;
+}
+
+@layer components {
+  .glass-header {
+    background: rgba(15, 12, 22, 0.7);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(139, 92, 246, 0.15);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.45);
+  }
+
+  .glass-panel {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 20px 70px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+
+  .btn-neon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 56px;
+    padding: 8px 24px;
+    border-radius: 14px;
+    background: linear-gradient(90deg, #8328f9 0%, #5f1eaf 100%);
+    background-image: linear-gradient(
+      to right,
+      lab(43.0295 75.21 -86.5669) 0%,
+      lab(30.6017 56.7637 -64.4751) 100%
+    );
+    border: 1px solid rgba(173, 70, 255, 0.5);
+    color: #fff;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0), 0 0 10px rgba(139, 92, 246, 0.6);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .btn-neon:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 45px rgba(139, 92, 246, 0.6);
+  }
+
+  .btn-glass {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 56px;
+    padding: 8px 24px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(173, 70, 255, 0.45);
+    box-shadow: 0 0 25px rgba(139, 92, 246, 0.25);
+    color: #fff;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  }
+
+  .btn-glass:hover {
+    transform: translateY(-1px);
+    background: rgba(139, 92, 246, 0.18);
+    box-shadow: 0 12px 40px rgba(139, 92, 246, 0.35);
+  }
+
+  /* Compact variant for nav / tight spaces */
+  .btn-compact {
+    min-height: 40px;
+    padding: 6px 14px;
+    border-radius: 12px;
+    font-size: 12px;
+    gap: 6px;
+  }
+
+  .nav-link {
+    position: relative;
+    transition: color 0.25s ease;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -6px;
+    left: 0;
+    background-color: #8B5CF6;
+    transition: width 0.25s ease;
+    box-shadow: 0 0 12px rgba(139, 92, 246, 0.65);
+  }
+
+  .nav-link:hover {
+    color: #fff;
+  }
+
+  .nav-link:hover::after {
+    width: 100%;
+  }
+
+  .glow-text {
+    text-shadow: 0 0 25px rgba(139, 92, 246, 0.65);
+  }
+
+  .pulse-ring {
+    box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.5);
+    animation: pulse-purple 2s infinite;
+  }
+
+  .card-gradient {
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.06) 0%, rgba(12, 10, 18, 0.8) 100%);
+    border: 1px solid rgba(139, 92, 246, 0.2);
+  }
+
+  .stat-chip {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+  }
+}
+
+.shine-text {
+  background: linear-gradient(120deg, #ffffff 0%, #c084fc 25%, #5f1eaf 50%, #c084fc 75%, #ffffff 100%);
+  background-size: 220% 220%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-shift 6s ease-in-out infinite;
+  text-shadow: 0 0 25px rgba(131, 40, 249, 0.5);
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes scroll-horizontal {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.pay-scroll {
+  animation: scroll-horizontal 20s linear infinite;
+}
+
+@keyframes pulse-purple {
+  0% {
+    transform: scale(0.98);
+    box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.5);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 18px rgba(139, 92, 246, 0);
+  }
+  100% {
+    transform: scale(0.98);
+    box-shadow: 0 0 0 0 rgba(139, 92, 246, 0);
+  }
+}
+
+@keyframes music-fall {
+  0% {
+    transform: translateY(-15%) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(115vh) rotate(240deg);
+    opacity: 0;
+  }
+}
+
+.music-fall {
+  position: absolute;
+  top: -10%;
+  color: rgba(131, 40, 249, 0.35);
+  filter: drop-shadow(0 0 6px rgba(131, 40, 249, 0.5));
+  animation: music-fall var(--dur, 14s) linear infinite;
+  animation-delay: var(--delay, 0s);
+  transform: translateY(-15%);
+}
+
+/* Smooth scrolling utility */
+body::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.smooth-scroll {
+  scroll-behavior: smooth;
+}
+
+/* For programmatic scrolling */
+.js-smooth-scroll {
+  scroll-behavior: smooth;
+}
