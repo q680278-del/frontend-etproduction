@@ -233,22 +233,23 @@ const HomePage = () => {
       setLoadingVideos(true);
       setVideoError('');
 
-      items.map((item) => ({
-        id: item.id?.videoId || item.id,
-        title: decode(item.title || item.snippet?.title || 'Tanpa judul'),
-        description: decode(item.description || item.snippet?.description || ''),
-        thumbnail:
-          item.thumbnail ||
-          item.snippet?.thumbnails?.high?.url ||
-          item.snippet?.thumbnails?.default?.url,
-        published: item.published
-          ? new Date(item.published).toLocaleDateString('id-ID')
-          : item.snippet?.publishedAt
-            ? new Date(item.snippet.publishedAt).toLocaleDateString('id-ID')
-            : '',
-        views: item.views !== undefined ? Number(item.views) : (item.statistics?.viewCount ? Number(item.statistics.viewCount) : 0),
-        likes: item.likes !== undefined ? Number(item.likes) : (item.statistics?.likeCount ? Number(item.statistics.likeCount) : 0),
-      }));
+      const mapItems = (items = []) =>
+        items.map((item) => ({
+          id: item.id?.videoId || item.id,
+          title: decode(item.title || item.snippet?.title || 'Tanpa judul'),
+          description: decode(item.description || item.snippet?.description || ''),
+          thumbnail:
+            item.thumbnail ||
+            item.snippet?.thumbnails?.high?.url ||
+            item.snippet?.thumbnails?.default?.url,
+          published: item.published
+            ? new Date(item.published).toLocaleDateString('id-ID')
+            : item.snippet?.publishedAt
+              ? new Date(item.snippet.publishedAt).toLocaleDateString('id-ID')
+              : '',
+          views: item.views !== undefined ? Number(item.views) : (item.statistics?.viewCount ? Number(item.statistics.viewCount) : 0),
+          likes: item.likes !== undefined ? Number(item.likes) : (item.statistics?.likeCount ? Number(item.statistics.likeCount) : 0),
+        }));
 
       // Try backend first
       try {
