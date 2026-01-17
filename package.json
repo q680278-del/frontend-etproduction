@@ -25,7 +25,6 @@
     "react-router-dom": "^6.8.1",
     "recharts": "^3.6.0",
     "resize-observer-polyfill": "^1.5.1",
-    "socket.io-client": "^4.8.3",
     "tailwind-merge": "^2.5.4",
     "zod": "^3.22.4"
   },

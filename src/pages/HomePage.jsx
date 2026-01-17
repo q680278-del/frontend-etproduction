@@ -20,7 +20,7 @@ import {
   ChevronDown,
   CreditCard,
   MessageCircle,
-  Instagram,
+
 } from 'lucide-react';
 import { Card } from '../components';
 import { motion } from 'framer-motion';
@@ -76,7 +76,7 @@ const HomePage = () => {
       {
         title: 'Full Production',
         description: 'Produksi lengkap dari komposisi, aransemen, inisial, hingga mixing & mastering.',
-        price: 150000,
+        price: 170000,
         features: ['Komposisi & Aransemen', 'Free Inisial Profesional', 'Mixing & Mastering', '2x Revisi Gratis'],
         popular: true,
       },
@@ -383,7 +383,7 @@ const HomePage = () => {
             Untuk Semua Kebutuhan Anda
           </motion.h1>
           <motion.p variants={fadeInUp} className="text-lg md:text-xl text-gray-200/80 max-w-2xl">
-            Wujudkan karya audio impian Anda dengan kualitas produksi musik terbaik. Dari mixing hingga full production, kami siap membantu.
+            Cocok cek sound, event, karnaval, dan lain lain, Kualitas di jamin bersih dan profesional. Buruan order sekarang dengan klik tombol di bawah ini!
           </motion.p>
 
           <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-3 w-full max-w-xl justify-center items-stretch sm:items-center mx-auto">
@@ -423,7 +423,7 @@ const HomePage = () => {
             <motion.p variants={fadeInUp} className="text-sm text-primary uppercase tracking-[0.3em] mb-2">Layanan</motion.p>
             <motion.h2 variants={fadeInUp} className="text-3xl md:text-4xl font-bold">Semua Yang Anda Butuhkan</motion.h2>
             <motion.p variants={fadeInUp} className="text-gray-300 mt-3 max-w-2xl mx-auto">
-              Paket fleksibel dengan kualitas produksi kelas dunia, dari ide mentah sampai rilis.
+              Paket murah dengan kualitas produksi kelas dunia.
             </motion.p>
           </motion.div>
 
@@ -460,7 +460,7 @@ const HomePage = () => {
                   {service.popular && (
                     <div className="absolute -top-3 inset-x-0 flex justify-center pointer-events-none">
                       <div className="bg-primary text-white px-5 py-1 rounded-full text-xs font-black tracking-wide shadow-lg">
-                        Paling Laris
+                        Promo
                       </div>
                     </div>
                   )}
@@ -822,24 +822,26 @@ const HomePage = () => {
               <p className="text-red-400 font-semibold text-sm break-all">entproductionofficial@gmail.com</p>
             </motion.a>
 
-            {/* Instagram */}
+            {/* TikTok */}
             <motion.a
               variants={scaleIn}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              href="https://instagram.com/entproduction"
+              href="https://www.tiktok.com/@efnd_production"
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-6 transition-all hover:-translate-y-1 hover:border-pink-500/50 hover:bg-pink-500/10 min-w-[250px] md:min-w-0 snap-center"
+              className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-6 transition-all hover:-translate-y-1 hover:border-cyan-500/50 hover:bg-cyan-500/10 min-w-[250px] md:min-w-0 snap-center"
             >
-              <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-gradient-to-br from-pink-500/20 to-purple-500/20 flex items-center justify-center group-hover:scale-110 transition-transform">
-                <Instagram className="h-6 w-6 text-pink-400" />
+              <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-gradient-to-br from-cyan-500/20 to-pink-500/20 flex items-center justify-center group-hover:scale-110 transition-transform">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" className="h-6 w-6 text-cyan-400">
+                  <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" />
+                </svg>
               </div>
-              <h3 className="text-lg font-bold text-white mb-1">Instagram</h3>
+              <h3 className="text-lg font-bold text-white mb-1">TikTok</h3>
               <p className="text-sm text-gray-400 mb-2">Ikuti Kami</p>
-              <p className="text-pink-400 font-semibold">@entproduction</p>
+              <p className="text-cyan-400 font-semibold">@entproduction</p>
             </motion.a>
           </div>
         </div>

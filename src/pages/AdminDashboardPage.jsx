@@ -6,7 +6,7 @@ import { Users, Globe, MapPin, Clock, LogOut, RefreshCw, TrendingUp, Sparkles, E
 import VisitorChart from '../components/VisitorChart';
 import SystemHealthCard from '../components/SystemHealthCard';
 import ErrorLog from '../components/ErrorLog';
-import useSocket from '../hooks/useSocket';
+import usePolling from '../hooks/usePolling';
 
 const AdminDashboardPage = () => {
     const navigate = useNavigate();
@@ -23,8 +23,9 @@ const AdminDashboardPage = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 10;
 
-    // Initialize Socket.io connection for real-time updates
-    const { connected, visitors, systemHealth: liveHealth, errorStats: liveErrorStats, liveCount } = useSocket();
+    // Polling for real-time updates (replaces Socket.IO)
+    const { data: liveHealth } = usePolling('/api/system/quick-stats', 5000);
+    const { data: liveNotifications } = usePolling('/api/notifications', 10000);
 
     const fetchAnalytics = async () => {
         const token = localStorage.getItem('adminToken');
