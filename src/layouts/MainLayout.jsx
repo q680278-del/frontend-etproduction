@@ -161,7 +161,7 @@ const MainLayout = ({ children }) => {
                       className="relative p-2 rounded-full hover:bg-white/10 transition-colors text-gray-200 hover:text-white"
                     >
                       <Bell className="w-5 h-5 md:w-6 md:h-6" />
-                      {notifications.filter(n => !n.read).length > 0 && (
+                      {(Array.isArray(notifications) ? notifications : []).filter(n => !n.read).length > 0 && (
                         <span className="absolute top-1 right-1 w-2.5 h-2.5 bg-red-500 rounded-full border border-[#0f0c16] animate-pulse" />
                       )}
                     </button>
