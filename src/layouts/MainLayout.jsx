@@ -8,7 +8,7 @@ import {
 } from 'lucide-react';
 import { motion, useScroll, useSpring, useTransform, AnimatePresence } from 'framer-motion';
 import ResizeObserver from 'resize-observer-polyfill';
-import useSocket from '../hooks/useSocket';
+// Socket.IO removed - using polling in dashboard instead
 
 const SmoothScroll = ({ children }) => {
   const scrollRef = useRef(null);
@@ -57,7 +57,7 @@ const MainLayout = ({ children }) => {
   const [showNotifications, setShowNotifications] = useState(false);
 
   // Use socket for real-time updates
-  const { socket } = useSocket();
+  // Socket removed for Vercel serverless compatibility
 
   // Fetch initial notifications
   const fetchNotifications = async () => {
@@ -73,32 +73,15 @@ const MainLayout = ({ children }) => {
     }
   };
 
+
   useEffect(() => {
     fetchNotifications();
 
-    if (socket) {
-      socket.on('notification:new', (newNotif) => {
-        setNotifications(prev => [newNotif, ...prev]);
-        // Optional: Play sound or show toast
-      });
+    // Poll for notifications every 10 seconds (replaces Socket.IO)
+    const interval = setInterval(fetchNotifications, 10000);
 
-      socket.on('notification:update', (updatedNotif) => {
-        setNotifications(prev => prev.map(n => n.id === updatedNotif.id ? updatedNotif : n));
-      });
-
-      socket.on('notification:delete', ({ id }) => {
-        setNotifications(prev => prev.filter(n => n.id !== id));
-      });
-    }
-
-    return () => {
-      if (socket) {
-        socket.off('notification:new');
-        socket.off('notification:update');
-        socket.off('notification:delete');
-      }
-    };
-  }, [socket]);
+    return () => clearInterval(interval);
+  }, []);
 
   const location = useLocation();
   const navigate = useNavigate();

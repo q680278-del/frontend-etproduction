@@ -147,39 +147,11 @@ const AdminDashboardPage = () => {
         }
     }, [liveHealth]);
 
-    // Update visitor list from Socket
-    useEffect(() => {
-        if (visitors && visitors.length > 0 && analytics) {
-            setAnalytics(prev => {
-                if (!prev) return prev;
-
-                // Merge new visitors with existing list, avoiding duplicates by ID or timestamp
-                // Note: Socket provides recent visitors. We prepend them.
-                // Simple approach: Take socket visitors, add current visitors, filter duplicates, limit to 100
-                const combined = [...visitors, ...prev.visitors];
-
-                // Remove duplicates based on ID or unique features if ID missing
-                const unique = Array.from(new Map(combined.map(item => [item.id || item.timestamp, item])).values());
-
-                // Sort by newness
-                unique.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
-
-                return {
-                    ...prev,
-                    visitors: unique,
-                    totalVisits: unique.length, // Update count
-                    uniqueVisitors: new Set(unique.map(v => v.ip)).size // Update unique count
-                };
-            });
-        }
-    }, [visitors]);
+    // Real-time visitors removed (polling-based updates now)
+    // Visitor data refreshed via fetchAnalytics() every page load
 
     // Update error stats from Socket.io
-    useEffect(() => {
-        if (liveErrorStats) {
-            setErrorStats(liveErrorStats);
-        }
-    }, [liveErrorStats]);
+
 
     // Fetch system health from API
     const fetchSystemHealth = async () => {
