@@ -66,7 +66,7 @@ const MainLayout = ({ children }) => {
       const res = await fetch(`${API_BASE}/api/notifications`);
       const data = await res.json();
       if (data.success) {
-        setNotifications(data.data);
+        setNotifications(Array.isArray(data.notifications) ? data.notifications : []);
       }
     } catch (err) {
       console.error('Failed to fetch notifications', err);
