@@ -635,7 +635,6 @@ const HomePage = () => {
                     <Play className="w-6 h-6 opacity-50" />
                   </div>
                   <p className="text-lg font-medium">{loadingVideos ? 'Sedang memuat highlight...' : 'Video tidak ditemukan'}</p>
-                  {videoError && <p className="text-xs text-red-400 mt-2 max-w-xs mx-auto">{videoError}</p>}
                 </div>
               )}
             </div>
