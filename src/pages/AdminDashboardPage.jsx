@@ -297,7 +297,7 @@ const AdminDashboardPage = () => {
 
                 {/* Real-time Visitor Analytics Chart */}
                 <div className="mb-6 md:mb-8">
-                    <VisitorChart visitors={[...visitors, ...(analytics?.visitors || [])]} liveCount={liveCount} />
+                    <VisitorChart visitors={analytics?.visitors || []} liveCount={0} />
                 </div>
 
                 {/* System Health Monitoring */}
